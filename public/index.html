@@ -1,38 +1,42 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Методический сайт преподавателя | С.Ю. Заяц</title>
     <meta name="description" content="Профессиональные методические материалы преподавателя экономических дисциплин">
-    
+
     <!-- Иконки -->
     <link rel="icon" href="favicon.ico" type="image/x-icon">
-    
+
     <!-- Шрифты -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@400;500;700&display=swap" rel="stylesheet">
-    
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@400;500;700&display=swap"
+        rel="stylesheet">
+
     <!-- Иконки Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+
     <!-- Анимации -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
-    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+
     <!-- Стили -->
     <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
     <!-- Прелоадер-->
     <div class="preloader">
-  <canvas id="particles"></canvas>
-  <div class="preloader-content">
-    <div class="progress-bar">
-      <div class="progress"></div>
+        <canvas id="particles"></canvas>
+        <div class="preloader-content">
+            <div class="progress-bar">
+                <div class="progress"></div>
+            </div>
+        </div>
     </div>
-  </div>
-</div>
 
     <!-- Прогресс-бар чтения -->
     <div class="reading-progress"></div>
@@ -40,37 +44,63 @@
     <!-- Шапка -->
     <header class="header">
         <div class="container">
-            <div class="header__inner">
-                <a href="#home" class="logo">
-                    <i class="fas fa-book-open logo__icon"></i>
-                    <span class="logo__text">Методический кабинет</span>
-                </a>
-                
-                <nav class="nav">
-                    <ul class="nav__list">
-                        <li class="nav__item"><a href="#home" class="nav__link active">Главная</a></li>
-                        <li class="nav__item"><a href="#about" class="nav__link">О преподавателе</a></li>
-                        <li class="nav__item"><a href="#materials" class="nav__link">Материалы</a></li>
-                        <li class="nav__item"><a href="#classroom" class="nav__link">Классное руководство</a></li>
-                        <li class="nav__item"><a href="#extracurricular" class="nav__link">Внеурочная деятельность</a></li>
-                        <li class="nav__item"><a href="#calendar" class="nav__link">Календарный план</a></li>
-                        <li class="nav__item"><a href="#gallery" class="nav__link">Галерея</a></li>
-                        <li class="nav__item"><a href="#contacts" class="nav__link">Контакты</a></li>
+          <div class="header__inner">
+            
+            <!-- Логотип -->
+            <a href="#home" class="logo">
+              <i class="fas fa-book-open logo__icon"></i>
+              <span class="logo__text">Методический кабинет</span>
+            </a>
+      
+            <!-- Навигация -->
+            <nav class="nav">
+                <ul class="nav__list">
+                  <li><a href="#home" class="nav__link active">Главная</a></li>
+                  <li><a href="#about" class="nav__link">О преподавателе</a></li>
+                  <li><a href="#contacts" class="nav__link">Контакты</a></li>
+              
+                  <!-- Другое (только для ПК) -->
+                  <li class="nav__dropdown">
+                    <a href="#" class="nav__link nav__dropdown-toggle">
+                      Другое <i class="fas fa-chevron-down"></i>
+                    </a>
+                    <ul class="dropdown-menu">
+                      <li><a href="#materials" class="dropdown-link">Материалы</a></li>
+                      <li><a href="#classroom" class="dropdown-link">Классное руководство</a></li>
+                      <li><a href="#extracurricular" class="dropdown-link">Внеурочка</a></li>
+                      <li><a href="#calendar" class="dropdown-link">Календарь</a></li>
+                      <li><a href="#gallery" class="dropdown-link">Галерея</a></li>
                     </ul>
-                </nav>
-                
-                <button class="btn btn--outline btn--small" id="adminLoginBtn">
-                    <i class="fas fa-lock"></i> <span class="btn-text">Админ</span>
-                </button>
-                
-                <button class="burger" id="burger" aria-label="Меню">
-                    <span class="burger__line"></span>
-                    <span class="burger__line"></span>
-                    <span class="burger__line"></span>
-                </button>
+                  </li>
+              
+                  <!-- Те же ссылки, но для мобильной версии -->
+                  <li class="nav__mobile-only"><a href="#materials" class="nav__link">Материалы</a></li>
+                  <li class="nav__mobile-only"><a href="#classroom" class="nav__link">Классное руководство</a></li>
+                  <li class="nav__mobile-only"><a href="#extracurricular" class="nav__link">Внеурочка</a></li>
+                  <li class="nav__mobile-only"><a href="#calendar" class="nav__link">Календарь</a></li>
+                  <li class="nav__mobile-only"><a href="#gallery" class="nav__link">Галерея</a></li>
+                </ul>
+              </nav>
+              
+              
+      
+            <!-- Действия -->
+            <div class="header__actions">
+              <button class="btn-admin" id="adminLoginBtn">
+                <i class="fas fa-lock"></i> Админ
+              </button>
+              <button class="burger" id="burger" aria-label="Меню">
+                <span></span>
+                <span></span>
+                <span></span>
+              </button>
             </div>
+      
+          </div>
         </div>
-    </header>
+      </header>
+      
+
 
     <!-- Основное содержимое -->
     <main>
@@ -85,18 +115,22 @@
             <div class="container">
                 <div class="hero__content">
                     <h1 class="hero__title">
-                        <span class="hero__title-line animate__animated animate__fadeInDown">Добро пожаловать на сайт</span>
-                        <span class="hero__title-line animate__animated animate__fadeInDown">преподавателя экономических дисциплин</span>
+                        <span class="hero__title-line animate__animated animate__fadeInDown">Добро пожаловать на
+                            сайт</span>
+                        <span class="hero__title-line animate__animated animate__fadeInDown">преподавателя экономических
+                            дисциплин</span>
                         <span class="hero__name animate__animated animate__fadeInDown">Заяц Сергея Юрьевича</span>
                     </h1>
-                    <p class="hero__subtitle animate__animated animate__fadeIn">Профессиональные методические материалы и разработки</p>
-                    <a href="#materials" class="btn btn--primary btn--large with-arrow animate__animated animate__fadeIn">
+                    <p class="hero__subtitle animate__animated animate__fadeIn">Профессиональные методические материалы
+                        и разработки</p>
+                    <a href="#materials"
+                        class="btn btn--primary btn--large with-arrow animate__animated animate__fadeIn">
                         Посмотреть материалы
                         <i class="fas fa-arrow-right"></i>
                     </a>
                 </div>
             </div>
-            
+
             <a href="#about" class="hero__scroll-down" aria-label="Прокрутить вниз">
                 <i class="fas fa-chevron-down"></i>
             </a>
@@ -109,49 +143,68 @@
                     <h2 class="section__title">О преподавателе</h2>
                     <p class="section__subtitle">Профессиональный опыт и достижения</p>
                 </div>
-                
+
                 <div class="about__grid">
                     <div class="about__photo animate">
-                        <img src="https://source.unsplash.com/random/600x600/?portrait,teacher,man" alt="Фото преподавателя Заяц С.Ю." class="about__img">
+                        <img src="https://source.unsplash.com/random/600x600/?portrait,teacher,man"
+                            alt="Фото преподавателя Заяц С.Ю." class="about__img">
                         <div class="about__photo-decor"></div>
                     </div>
-                    
+
                     <div class="about__info animate">
                         <h3 class="about__name">Заяц Сергей Юрьевич</h3>
-                        <p class="about__position">Преподаватель экономических дисциплин</p>
-                        
+                        <p class="about__position">Преподаватель экономических дисциплин
+                        <p class="about__position1">Стаж работы: общий: 3 года, педагогический: 1 год</p>
+                        </p>
+
                         <div class="about__bio">
-                            <p>Образование:</p>
-                            
+                            <p>
+                                C 2021 года работает в ГБ ПОУ РК «ФПТ», в настоящее время является преподавателем
+                                цикловой комиссии экономических дисциплин.
+                            </p>
+                            <p class="zag_bio">Образование:</p>
+                            <p>2023: Феодосийский политехнический техникум. Специальность: «Технология продукции
+                                общественного питания». Квалификация: техник-технолог.
+                            </p>
+                            <p class="zag_bio">Профессиональная переподготовка:</p>2022: Учитель обществознания.
+                            2023: Преподаватель экономических и управленческих дисциплин.
                         </div>
-                        
-                        <div class="about__stats">
-                            <div class="stat-item animate">
-                                <div class="stat-item__number">15+</div>
-                                <div class="stat-item__text">лет опыта</div>
+                    </div>
+                </div>
+            </div> <section class="section_materials-section" id="materials">
+            <div class="container">
+                <div class="about__gallery">
+                    <div class="about__gallery-section">
+                        <h3 class="about__gallery-title">Мои грамоты и достижения</h3>
+                        <div class="about__gallery">
+                            <div class="about__gallery-item animate">
+                                <img src="images/diploma1.jpg" alt="Грамота 1">
                             </div>
-                            <div class="stat-item animate">
-                                <div class="stat-item__number">500+</div>
-                                <div class="stat-item__text">студентов</div>
+                            <div class="about__gallery-item animate">
+                                <img src="images/diploma2.jpg" alt="Грамота 2">
                             </div>
-                            <div class="stat-item animate">
-                                <div class="stat-item__number">30+</div>
-                                <div class="stat-item__text">методичек</div>
+                            <div class="about__gallery-item animate">
+                                <img src="images/diploma3.jpg" alt="Грамота 3">
+                            </div>
+                            <div class="about__gallery-item animate">
+                                <img src="images/diploma4.jpg" alt="Грамота 4">
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-
+        </section>
+        
+       
         <!-- Методические материалы -->
-         <section class="section_materials-section" id="materials">
+        <section class="section_materials-section" id="materials">
             <div class="container">
                 <div class="section__header animate">
                     <h2 class="section__title">Методические материалы</h2>
                     <p class="section__subtitle">Учебные пособия и разработки</p>
                 </div>
-                
+
                 <div class="materials-tabs">
                     <div aria-label="Дисциплины" class="tabs-nav" role="tablist">
                         <button aria-controls="tab-finlit" aria-selected="true" class="tab-btn active" id="btn-finlit"
@@ -192,13 +245,13 @@
                                     <p class="material-card__desc">Как распознать мошенничество и защитить данные</p>
                                     <a class="btn btn--outline" href="#">Скачать</a>
                                 </div>
-                                 <div class="material-card animate">
+                                <div class="material-card animate">
                                     <div class="material-card__icon"><i class="fas fa-clipboard-check"></i></div>
                                     <h3 class="material-card__title">Фонды оценочных средств</h3>
                                     <p class="material-card__desc">Руководство к действию</p>
                                     <a class="btn btn--outline" href="#">Скачать</a>
                                 </div>
-                                 <div class="material-card animate">
+                                <div class="material-card animate">
                                     <div class="material-card__icon"><i class="fas fa-folder-open"></i></div>
                                     <h3 class="material-card__title">Дополнительные материалы</h3>
                                     <p class="material-card__desc">Руководство к действию</p>
@@ -227,13 +280,13 @@
                                     <p class="material-card__desc">Как распознать мошенничество и защитить данные</p>
                                     <a class="btn btn--outline" href="#">Скачать</a>
                                 </div>
-                                 <div class="material-card animate">
+                                <div class="material-card animate">
                                     <div class="material-card__icon"><i class="fas fa-clipboard-check"></i></div>
                                     <h3 class="material-card__title">Фонды оценочных средств</h3>
                                     <p class="material-card__desc">Руководство к действию</p>
                                     <a class="btn btn--outline" href="#">Скачать</a>
                                 </div>
-                                 <div class="material-card animate">
+                                <div class="material-card animate">
                                     <div class="material-card__icon"><i class="fas fa-folder-open"></i></div>
                                     <h3 class="material-card__title">Дополнительные материалы</h3>
                                     <p class="material-card__desc">Руководство к действию</p>
@@ -262,13 +315,13 @@
                                     <p class="material-card__desc">Как распознать мошенничество и защитить данные</p>
                                     <a class="btn btn--outline" href="#">Скачать</a>
                                 </div>
-                                 <div class="material-card animate">
+                                <div class="material-card animate">
                                     <div class="material-card__icon"><i class="fas fa-clipboard-check"></i></div>
                                     <h3 class="material-card__title">Фонды оценочных средств</h3>
                                     <p class="material-card__desc">Руководство к действию</p>
                                     <a class="btn btn--outline" href="#">Скачать</a>
                                 </div>
-                                 <div class="material-card animate">
+                                <div class="material-card animate">
                                     <div class="material-card__icon"><i class="fas fa-folder-open"></i></div>
                                     <h3 class="material-card__title">Дополнительные материалы</h3>
                                     <p class="material-card__desc">Руководство к действию</p>
@@ -297,13 +350,13 @@
                                     <p class="material-card__desc">Как распознать мошенничество и защитить данные</p>
                                     <a class="btn btn--outline" href="#">Скачать</a>
                                 </div>
-                                 <div class="material-card animate">
+                                <div class="material-card animate">
                                     <div class="material-card__icon"><i class="fas fa-clipboard-check"></i></div>
                                     <h3 class="material-card__title">Фонды оценочных средств</h3>
                                     <p class="material-card__desc">Руководство к действию</p>
                                     <a class="btn btn--outline" href="#">Скачать</a>
                                 </div>
-                                 <div class="material-card animate">
+                                <div class="material-card animate">
                                     <div class="material-card__icon"><i class="fas fa-folder-open"></i></div>
                                     <h3 class="material-card__title">Дополнительные материалы</h3>
                                     <p class="material-card__desc">Руководство к действию</p>
@@ -323,28 +376,31 @@
                     <h2 class="section__title">Классное руководство</h2>
                     <p class="section__subtitle">Мероприятия и фотографии учебного процесса</p>
                 </div>
-                
+
                 <div class="classroom__grid" id="classroomGrid">
                     <div class="classroom-item animate">
-                        <img src="https://source.unsplash.com/random/600x400/?classroom,students" alt="Занятие в классе" class="classroom-item__img">
+                        <img src="https://source.unsplash.com/random/600x400/?classroom,students" alt="Занятие в классе"
+                            class="classroom-item__img">
                         <div class="classroom-item__content">
                             <h3 class="classroom-item__title">Открытый урок по экономике</h3>
                             <p class="classroom-item__date">15 сентября 2023</p>
                             <p class="classroom-item__desc">Проведение открытого урока для коллег и родителей</p>
                         </div>
                     </div>
-                    
+
                     <div class="classroom-item animate">
-                        <img src="https://source.unsplash.com/random/600x400/?students,group" alt="Работа в группах" class="classroom-item__img">
+                        <img src="https://source.unsplash.com/random/600x400/?students,group" alt="Работа в группах"
+                            class="classroom-item__img">
                         <div class="classroom-item__content">
                             <h3 class="classroom-item__title">Групповая работа студентов</h3>
                             <p class="classroom-item__date">22 октября 2023</p>
                             <p class="classroom-item__desc">Совместное решение экономических кейсов</p>
                         </div>
                     </div>
-                    
+
                     <div class="classroom-item animate">
-                        <img src="https://source.unsplash.com/random/600x400/?presentation,education" alt="Студенческие презентации" class="classroom-item__img">
+                        <img src="https://source.unsplash.com/random/600x400/?presentation,education"
+                            alt="Студенческие презентации" class="classroom-item__img">
                         <div class="classroom-item__content">
                             <h3 class="classroom-item__title">Защита проектов</h3>
                             <p class="classroom-item__date">5 ноября 2023</p>
@@ -362,7 +418,7 @@
                     <h2 class="section__title">Внеурочная деятельность</h2>
                     <p class="section__subtitle">Программы и мероприятия вне учебного плана</p>
                 </div>
-                
+
                 <div class="extracurricular__content" id="extracurricularContent">
                     <div class="program-card animate">
                         <div class="program-card__header">
@@ -370,7 +426,8 @@
                             <h3 class="program-card__title">Экономический кружок</h3>
                         </div>
                         <div class="program-card__body">
-                            <p class="program-card__desc">Углубленное изучение экономических дисциплин для заинтересованных студентов</p>
+                            <p class="program-card__desc">Углубленное изучение экономических дисциплин для
+                                заинтересованных студентов</p>
                             <ul class="program-card__list">
                                 <li><strong>Время проведения:</strong> Каждый вторник, 16:00-18:00</li>
                                 <li><strong>Аудитория:</strong> 305</li>
@@ -378,14 +435,15 @@
                             </ul>
                         </div>
                     </div>
-                    
+
                     <div class="program-card animate">
                         <div class="program-card__header">
                             <i class="fas fa-trophy program-card__icon"></i>
                             <h3 class="program-card__title">Подготовка к олимпиадам</h3>
                         </div>
                         <div class="program-card__body">
-                            <p class="program-card__desc">Специальная программа для подготовки к региональным и всероссийским олимпиадам по экономике</p>
+                            <p class="program-card__desc">Специальная программа для подготовки к региональным и
+                                всероссийским олимпиадам по экономике</p>
                             <ul class="program-card__list">
                                 <li><strong>Время проведения:</strong> Понедельник и четверг, 15:00-17:00</li>
                                 <li><strong>Аудитория:</strong> 210</li>
@@ -393,7 +451,7 @@
                             </ul>
                         </div>
                     </div>
-                    
+
                     <div class="program-card animate">
                         <div class="program-card__header">
                             <i class="fas fa-users program-card__icon"></i>
@@ -419,12 +477,12 @@
                     <h2 class="section__title">Календарно-тематический план</h2>
                     <p class="section__subtitle">Планирование учебного процесса на семестр</p>
                 </div>
-                
+
                 <div class="calendar__filters">
                     <button class="filter-btn active" data-semester="1">1 семестр</button>
                     <button class="filter-btn" data-semester="2">2 семестр</button>
                 </div>
-                
+
                 <div class="calendar-table" id="calendarTable">
                     <table>
                         <thead>
@@ -478,24 +536,27 @@
                     <h2 class="section__title">Фотогалерея</h2>
                     <p class="section__subtitle">Моменты из преподавательской деятельности</p>
                 </div>
-                
+
                 <div class="gallery__grid">
                     <div class="gallery-item animate">
-                        <img src="https://source.unsplash.com/random/600x400/?lecture" alt="Проведение лекции по экономике" class="gallery-item__img">
+                        <img src="https://source.unsplash.com/random/600x400/?lecture"
+                            alt="Проведение лекции по экономике" class="gallery-item__img">
                         <div class="gallery-item__overlay">
                             <i class="fas fa-search-plus"></i>
                         </div>
                     </div>
-                    
+
                     <div class="gallery-item animate">
-                        <img src="https://source.unsplash.com/random/600x400/?seminar" alt="Семинар со студентами" class="gallery-item__img">
+                        <img src="https://source.unsplash.com/random/600x400/?seminar" alt="Семинар со студентами"
+                            class="gallery-item__img">
                         <div class="gallery-item__overlay">
                             <i class="fas fa-search-plus"></i>
                         </div>
                     </div>
-                    
+
                     <div class="gallery-item animate">
-                        <img src="https://source.unsplash.com/random/600x400/?conference" alt="Выступление на конференции" class="gallery-item__img">
+                        <img src="https://source.unsplash.com/random/600x400/?conference"
+                            alt="Выступление на конференции" class="gallery-item__img">
                         <div class="gallery-item__overlay">
                             <i class="fas fa-search-plus"></i>
                         </div>
@@ -511,17 +572,18 @@
                     <h2 class="section__title">Контакты</h2>
                     <p class="section__subtitle">Свяжитесь со мной удобным способом</p>
                 </div>
-                
+
                 <div class="contacts__grid">
                     <div class="contacts__info animate">
                         <div class="contact-item">
                             <i class="fas fa-envelope contact-item__icon"></i>
                             <div class="contact-item__content">
                                 <h4 class="contact-item__title">Email</h4>
-                                <a href="mailto:s.zayats@example.com" class="contact-item__link">s.zayats@example.com</a>
+                                <a href="mailto:s.zayats@example.com"
+                                    class="contact-item__link">s.zayats@example.com</a>
                             </div>
                         </div>
-                        
+
                         <div class="contact-item">
                             <i class="fas fa-phone contact-item__icon"></i>
                             <div class="contact-item__content">
@@ -529,7 +591,7 @@
                                 <a href="tel:+71234567890" class="contact-item__link">+7 (123) 456-78-90</a>
                             </div>
                         </div>
-                        
+
                         <div class="contact-item">
                             <i class="fas fa-map-marker-alt contact-item__icon"></i>
                             <div class="contact-item__content">
@@ -538,7 +600,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <form class="contacts__form animate" id="contactForm">
                         <div class="form-group">
                             <input type="text" name="name" placeholder="Ваше имя" required>
@@ -567,7 +629,7 @@
                     </div>
                     <p class="footer__about">Профессиональные материалы для преподавателей экономических дисциплин</p>
                 </div>
-                
+
                 <div class="footer__col">
                     <h4 class="footer__title">Разделы</h4>
                     <ul class="footer__links">
@@ -581,7 +643,7 @@
                         <li><a href="#contacts">Контакты</a></li>
                     </ul>
                 </div>
-                
+
                 <div class="footer__col">
                     <h4 class="footer__title">Контакты</h4>
                     <ul class="footer__contacts">
@@ -591,9 +653,10 @@
                     </ul>
                 </div>
             </div>
-            
+
             <div class="footer__bottom">
-                <p class="footer__copyright">&copy; 2023 Методический кабинет С.Ю. Заяц. Все права защищены. Разработчики: Захаревич Н.Д, Пенов Д.А.</p>
+                <p class="footer__copyright">&copy; 2023 Методический кабинет С.Ю. Заяц. Все права защищены.
+                    Разработчики: Захаревич Н.Д, Пенов Д.А.</p>
                 <div class="footer__social">
                     <a href="#" aria-label="ВКонтакте"><i class="fab fa-vk"></i></a>
                     <a href="#" aria-label="Telegram"><i class="fab fa-telegram"></i></a>
@@ -613,12 +676,12 @@
         <div class="modal__dialog">
             <div class="modal__content">
                 <button class="modal__close" id="closeModal">&times;</button>
-                
+
                 <div class="modal__header">
                     <i class="fas fa-lock modal__icon"></i>
                     <h3 class="modal__title">Вход для администратора</h3>
                 </div>
-                
+
                 <form id="adminLoginForm" class="modal__form">
                     <div class="form-group">
                         <input type="text" id="adminLogin" placeholder="Логин" required>
@@ -642,7 +705,7 @@
                 <i class="fas fa-sign-out-alt"></i> Выйти
             </button>
         </div>
-        
+
         <div class="admin-tabs">
             <button class="admin-tab active" data-tab="documents">Документы</button>
             <button class="admin-tab" data-tab="gallery">Галерея</button>
@@ -651,7 +714,7 @@
             <button class="admin-tab" data-tab="calendar">Календарный план</button>
             <button class="admin-tab" data-tab="content">Контент</button>
         </div>
-        
+
         <div class="admin-content">
             <!-- Управление документами -->
             <div class="admin-tab-content active" id="documentsTab">
@@ -662,7 +725,7 @@
                 </div>
                 <div id="documentsList"></div>
             </div>
-            
+
             <!-- Управление галереей -->
             <div class="admin-tab-content" id="galleryTab">
                 <h4>Управление фотогалереей</h4>
@@ -673,7 +736,7 @@
                 </div>
                 <div id="galleryList"></div>
             </div>
-            
+
             <!-- Управление классным руководством -->
             <div class="admin-tab-content" id="classroomTab">
                 <h4>Управление классным руководством</h4>
@@ -686,7 +749,7 @@
                 </form>
                 <div id="classroomList"></div>
             </div>
-            
+
             <!-- Управление внеурочной деятельностью -->
             <div class="admin-tab-content" id="extracurricularTab">
                 <h4>Управление внеурочной деятельностью</h4>
@@ -699,7 +762,7 @@
                 </form>
                 <div id="extracurricularList"></div>
             </div>
-            
+
             <!-- Управление календарным планом -->
             <div class="admin-tab-content" id="calendarTab">
                 <h4>Управление календарным планом</h4>
@@ -717,7 +780,7 @@
                 </form>
                 <div id="calendarList"></div>
             </div>
-            
+
             <!-- Управление контентом -->
             <div class="admin-tab-content" id="contentTab">
                 <h4>Управление контентом сайта</h4>
@@ -736,4 +799,5 @@
     <!-- Скрипты -->
     <script src="script.js"></script>
 </body>
+
 </html>
