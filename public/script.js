@@ -161,6 +161,21 @@ function initNavigation() {
             header.style.padding = '15px 0';
         }
     });
+    // Dropdown toggle для мобильного
+document.querySelectorAll('.nav__dropdown-toggle').forEach(toggle => {
+    toggle.addEventListener('click', (e) => {
+      if (window.innerWidth <= 768) {
+        e.preventDefault();
+        const parent = toggle.parentElement;
+        parent.classList.toggle('open');
+        const menu = parent.querySelector('.dropdown-menu');
+        if (menu) {
+          menu.style.maxHeight = parent.classList.contains('open') ? menu.scrollHeight + "px" : "0";
+        }
+      }
+    });
+  });
+  
 }
 
 // Анимации при скролле
