@@ -30,4 +30,18 @@ app.get("/api/hello", (req, res) => {
   res.json({ message: "API работает ✅" });
 });
 
-// Загрузка докум
+// Загрузка документов
+app.post("/api/documents", upload.single("file"), (req, res) => {
+  res.json({
+    success: true,
+    filename: req.file.filename,
+    url: `/uploads/${req.file.filename}`
+  });
+});
+
+// Главная страница
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "index.html"));
+});
+
+app.listen(PORT, () => console.log(`Сервер запущен на порту ${PORT}`));
