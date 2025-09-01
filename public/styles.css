@@ -22,6 +22,12 @@ html {
     scroll-behavior: smooth;
 }
 
+.header__actions {
+    display: flex;
+    align-items: center;
+    gap: 12px; /* расстояние между кнопками */
+  }
+
 body {
     font-family: 'Montserrat', sans-serif;
     line-height: 1.6;
@@ -183,88 +189,211 @@ body {
 /* Шапка */
 .header {
     position: fixed;
-    top: 0;
-    left: 0;
+    top: 0; left: 0;
     width: 100%;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(12px);
+    transition: all 0.3s ease;
+    z-index: 1000;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  }
+  .header.scrolled {
     background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    z-index: 100;
-    transition: var(--transition);
-    box-shadow: var(--shadow);
-}
-
-.header__inner {
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  }
+  
+  .header__inner {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 15px 0;
-}
-
-.logo {
+    padding: 14px 0;
+  }
+  
+  /* Логотип */
+  .logo {
     display: flex;
     align-items: center;
-    text-decoration: none;
-    color: var(--primary-color);
+    gap: 10px;
     font-weight: 700;
     font-size: 1.2rem;
-}
-
-.logo__icon {
-    margin-right: 10px;
-    color: var(--secondary-color);
-}
-
-.nav__list {
-    display: flex;
-    list-style: none;
-    gap: 30px;
-}
-
-.nav__link {
+    color: var(--primary-color);
     text-decoration: none;
-    color: var(--text-color);
-    font-weight: 500;
-    transition: var(--transition);
-    position: relative;
-}
-
-.nav__link:hover,
-.nav__link.active {
+  }
+  .logo__icon {
+    font-size: 1.4rem;
     color: var(--secondary-color);
-}
-
-.nav__link::after {
+  }
+  
+  /* Меню */
+  .nav__list {
+    display: flex;
+    gap: 25px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .nav__link {
+    position: relative;
+    font-weight: 500;
+    color: var(--text-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  .nav__link::after {
     content: '';
     position: absolute;
-    bottom: -5px;
-    left: 0;
-    width: 0;
-    height: 2px;
+    left: 0; bottom: -5px;
+    width: 0; height: 2px;
     background: var(--secondary-color);
-    transition: var(--transition);
-}
-
-.nav__link:hover::after,
-.nav__link.active::after {
+    transition: width 0.3s ease;
+  }
+  .nav__link:hover,
+  .nav__link.active {
+    color: var(--secondary-color);
+  }
+  .nav__link:hover::after,
+  .nav__link.active::after {
     width: 100%;
-}
-
-.burger {
-    display: none;
-    flex-direction: column;
-    background: none;
-    border: none;
+  }
+  
+/* Dropdown */
+.nav__dropdown {
+    position: relative;
+  }
+  .nav__dropdown-toggle {
+    display: flex;
+    align-items: center;
+    gap: 5px;
     cursor: pointer;
-    padding: 5px;
-}
+  }
+  .dropdown-menu {
+    position: absolute;
+    top: 110%;
+    left: 0;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    list-style: none;
+    padding: 10px 0;
+    min-width: 200px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+    z-index: 1000;
+  }
+  .dropdown-menu li {
+    width: 100%;
+  }
+  .dropdown-link {
+    display: block;
+    padding: 10px 16px;
+    color: var(--text-color);
+    text-decoration: none;
+    transition: background 0.2s ease;
+  }
+  .dropdown-link:hover {
+    background: var(--light-color);
+    color: var(--secondary-color);
+  }
+  
+  /* При наведении показываем */
+  .nav__dropdown:hover .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+  
+  @media (max-width: 768px) {
+    .dropdown-menu {
+      position: static;
+      box-shadow: none;
+      opacity: 1;
+      visibility: visible;
+      transform: none;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+    }
+    .nav__dropdown.open .dropdown-menu {
+      max-height: 500px; /* авто раскрытие */
+    }
+  }
 
-.burger__line {
-    width: 25px;
-    height: 3px;
-    background: var(--primary-color);
-    margin: 3px 0;
-    transition: var(--transition);
-}
+  /* По умолчанию мобильные пункты скрыты */
+.nav__mobile-only {
+    display: none;
+  }
+  
+  /* На мобильных — скрываем вкладку Другое, показываем обычные пункты */
+  @media (max-width: 768px) {
+    .nav__dropdown {
+      display: none;
+    }
+    .nav__mobile-only {
+      display: block;
+    }
+  }
+  
+
+  /* Кнопка Админ */
+  .btn-admin {
+    padding: 8px 16px;
+    border: 2px solid var(--secondary-color);
+    background: transparent;
+    border-radius: 8px;
+    color: var(--secondary-color);
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  .btn-admin:hover {
+    background: var(--secondary-color);
+    color: #fff;
+    transform: translateY(-2px);
+  }
+  
+  /* Бургер */
+  .burger {
+    display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+  }
+  .burger span {
+    display: block;
+  width: 26px;
+  height: 3px;
+  background: var(--primary-color);
+  border-radius: 3px;
+  transition: all 0.3s ease;
+  }
+  .burger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+  .burger.active span:nth-child(2) {
+    opacity: 0;
+  }
+  .burger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(6px, -6px);
+  }
+  
+  /* ----- Мобильная версия ----- */
+@media (max-width: 768px) {
+    .header__actions {
+      margin-left: auto; /* прижимаем блок действий вправо */
+    }
+    .burger {
+      display: flex; /* показываем бургер справа от кнопки Админ */
+    }
+  }
+
+  
+  
 
 /* Хлебные крошки */
 .breadcrumbs-container {
@@ -285,6 +414,34 @@ body {
 .breadcrumbs a:hover {
     text-decoration: underline;
 }
+
+/* Контейнер кнопок табов */
+.tabs-nav {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 20px;
+    flex-wrap: wrap; /* по умолчанию перенос на десктопе */
+  }
+  
+  /* Кнопки табов */
+  .tab-btn {
+    padding: 10px 18px;
+    border: 2px solid var(--secondary-color);
+    background: transparent;
+    border-radius: 6px;
+    color: var(--secondary-color);
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap; /* не переносить текст */
+  }
+  .tab-btn:hover,
+  .tab-btn.active {
+    background: var(--secondary-color);
+    color: #fff;
+  }
+  
+ 
 
 /* Герой-секция */
 .hero {
@@ -394,8 +551,78 @@ body {
 .about__position {
     color: var(--secondary-color);
     font-weight: 500;
+
+}
+
+.about__position1 {
+    color: var(--secondary-color);
+    font-weight: 500;
     margin-bottom: 20px;
 }
+
+.about__gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.about__gallery-item {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: transform 0.3s ease;
+}
+
+.about__gallery-item:hover {
+    transform: scale(1.05);
+}
+
+.about__gallery-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+.about__gallery-section {
+    background: var(--light-color); /* подложка */
+    padding: 40px;
+    border-radius: 15px;
+    margin-top: 30px;
+    box-shadow: var(--shadow);
+}
+
+.about__gallery-title {
+    text-align: center;
+    font-size: 1.8rem;
+    color: var(--primary-color);
+    margin-bottom: 25px;
+}
+
+.about__gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* растягиваем на всю ширину */
+    gap: 20px;
+}
+
+.about__gallery-item {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: transform 0.3s ease;
+}
+
+.about__gallery-item:hover {
+    transform: scale(1.05);
+}
+
+.about__gallery-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
 
 .about__bio {
     margin-bottom: 30px;
@@ -1231,3 +1458,32 @@ body {
 .mt-40 {
     margin-top: 40px;
 }
+.zag_bio{
+    font-weight: bold;
+}
+
+/* ===============================
+   Исправление табов на мобильных
+   =============================== */
+   @media (max-width: 768px) {
+    .tabs-nav {
+      display: flex !important;        /* жёстко принудим flex */
+      flex-direction: row !important;  /* только в строку */
+      flex-wrap: nowrap !important;    /* запрет переноса */
+      overflow-x: auto !important;     /* горизонтальная прокрутка */
+      -webkit-overflow-scrolling: touch;
+      gap: 10px !important;
+      padding: 5px 0;
+      scrollbar-width: none;           /* убрать скроллбар (Firefox) */
+    }
+    .tabs-nav::-webkit-scrollbar {
+      display: none;                   /* убрать скроллбар (Chrome/Safari) */
+    }
+  
+    .tabs-nav .tab-btn {
+      flex: 0 0 auto !important;       /* фиксированный размер */
+      white-space: nowrap !important;  /* текст не переносится */
+      min-width: max-content;          /* кнопка не сжимается */
+    }
+  }
+  
