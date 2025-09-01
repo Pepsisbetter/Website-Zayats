@@ -3,12 +3,12 @@ import multer from "multer";
 import cors from "cors";
 import path from "path";
 import { fileURLToPath } from "url";
-import fs from 'fs';
+import fs from 'fs'; // <-- Added import for 'fs'
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Создаем папку uploads если ее нет
+// Create 'uploads' directory if it doesn't exist
 const uploadsDir = path.join(__dirname, 'uploads');
 if (!fs.existsSync(uploadsDir)) {
     fs.mkdirSync(uploadsDir, { recursive: true });
