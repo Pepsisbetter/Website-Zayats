@@ -4,79 +4,51 @@ import cors from "cors";
 import path from "path";
 import { fileURLToPath } from "url";
 import fs from 'fs';
-// +++ Импортируем пакет для работы с PostgreSQL +++
-import pkg from 'pg';
-const { Pool } = pkg;
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Создаем пул подключений к БД
-// Он автоматически возьмет строку подключения из переменной окружения DATABASE_URL, которую мы добавили в Render
-const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
-  ssl: {
-    rejectUnauthorized: false // Это часто необходимо для внешних БД, включая Render
-  }
-});
-
-// Создаем таблицу для хранения информации о файлах (это нужно сделать один раз)
-async function initDatabase() {
-  const client = await pool.connect();
-  try {
-    await client.query(`
-      CREATE TABLE IF NOT EXISTS documents (
-        id SERIAL PRIMARY KEY,
-        original_name TEXT NOT NULL,
-        stored_name TEXT NOT NULL,
-        upload_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-      );
-    `);
-    console.log('✅ Таблица documents готова');
-  } catch (err) {
-    console.error('❌ Ошибка создания таблицы:', err);
-  } finally {
-    client.release();
-  }
+// Создаем папку uploads если ее нет
+const uploadsDir = path.join(__dirname, 'uploads');
+if (!fs.existsSync(uploadsDir)) {
+    fs.mkdirSync(uploadsDir, { recursive: true });
 }
-// Вызываем функцию инициализации при старте сервера
-initDatabase();
 
-// ... остальной код (создание папки uploads, настройка express и multer) остается без изменений ...
+const app = express();
+const PORT = process.env.PORT || 5000;
 
-// Загрузка документов ТЕПЕРЬ С СОХРАНЕНИЕМ В БД
-app.post("/api/documents", upload.single("file"), async (req, res) => {
-  // Получаем данные о файле из multer
-  const { originalname, filename } = req.file;
+// Middleware
+app.use(cors());
+app.use(express.json());
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
-  try {
-    // Сохраняем информацию о файле в базу данных
-    const result = await pool.query(
-      'INSERT INTO documents (original_name, stored_name) VALUES ($1, $2) RETURNING *',
-      [originalname, filename]
-    );
+// Отдаём фронтенд из папки public
+app.use(express.static(path.join(__dirname, "public")));
 
-    // Отправляем успешный ответ, включая ID из базы данных
-    res.json({
-      success: true,
-      document: result.rows[0], // Возвращаем всю запись из БД
-      url: `/uploads/${filename}`
-    });
-  } catch (err) {
-    console.error('Ошибка сохранения в БД:', err);
-    res.status(500).json({ success: false, error: 'Database error' });
-  }
+// Настройка для загрузки файлов
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => cb(null, "uploads/"),
+  filename: (req, file, cb) => cb(null, Date.now() + "-" + file.originalname)
+});
+const upload = multer({ storage });
+
+// Тестовый API
+app.get("/api/hello", (req, res) => {
+  res.json({ message: "API работает ✅" });
 });
 
-// Новый API-эндпоинт для получения списка всех документов
-app.get("/api/documents", async (req, res) => {
-  try {
-    const result = await pool.query('SELECT * FROM documents ORDER BY upload_date DESC');
-    res.json(result.rows);
-  } catch (err) {
-    console.error('Ошибка загрузки из БД:', err);
-    res.status(500).json({ error: 'Database error' });
-  }
+// Загрузка документов
+app.post("/api/documents", upload.single("file"), (req, res) => {
+  res.json({
+    success: true,
+    filename: req.file.filename,
+    url: `/uploads/${req.file.filename}`
+  });
 });
 
-// ... остальной код (статические routes, app.listen) остается без изменений ...
+// Главная страница
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "index.html"));
+});
+
+app.listen(PORT, () => console.log(`Сервер запущен на порту ${PORT}`));
